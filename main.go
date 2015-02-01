@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	log.SetOutput(os.Stderr)
+	log.SetOutput(os.Stdout)
 
 	config := &ssh.ServerConfig{
 		PasswordCallback: authenticate,
@@ -91,7 +91,7 @@ func main() {
 					log.Println("Breaking from readline loop: ", err)
 					break
 				}
-				fmt.Println(line)
+				fmt.Fprintln(term, "Received command: ", line)
 			}
 		}()
 	}
